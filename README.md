@@ -7,8 +7,8 @@ I have added a sample test file so you can understand how to use it.
 
 نمونه فایل تست را اضافه کردم تا متوجه چگونگی استفاده شوید.
 
-In case of financial support or questions, you can send a message in the Telegram group.
+If you want financial support or have questions, you can send a message in the Telegram group.
 
-اگر حمایت مالی میتوانید بکنید یا سوالی دارید میتوانید در گروه تلگرام به من پیام بدهید.
+اگر خواهان حمایت مالی یا سوال هستید میتوانید در گروه تلگرام به من پیام بدهید.
 
 ID Telegram: t.me/kivyiran
