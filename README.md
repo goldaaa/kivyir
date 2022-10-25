@@ -27,7 +27,7 @@ Importing
 
 Import kivyir commands, menus, and the shell
 
-    from kivyir import *                        # Line 1 should always be placed
+    from kivyir import *        # Line 1 should always be placed
 
 
 Commands
@@ -37,7 +37,8 @@ Commands that can be used
     
 Some changes if needed
 
-    from kivyir import ConfigText               # Line 2 should always be placed
+    from kivyir import ConfigText       # Line 2 should always be placed
+    
     ConfigText.base_direction = 'ltr' or 'rtl'
     ConfigText.font_name = 'font_name'
     ConfigText.file_regular = '{path}/file_regular.ttf'
