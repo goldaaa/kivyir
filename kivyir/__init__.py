@@ -1,6 +1,7 @@
 __version__ = "1.0.0"
-__programing__ = "navid nasiri --> github user (goldaaa)"
-
+__programer__ = "navid nasiri"
+__github__ = "https://github.com/goldaaa"
+__gmail__ = "goldaaa.program@gmail.com"
 
 from .ConfigText import *
 from .ConfigInput import *
