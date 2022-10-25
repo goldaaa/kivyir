@@ -12,5 +12,7 @@ I have added a sample test file so you can understand how to use it.
 If you are interested in financial support, you can send a message through Gmail if you have any questions.
 
 اگر قصد حمایت مالی یا سوال دارید می توانید از طریق جیمیل پیام ارسال کنید.
+
 gmail: goldaaa.program@gmail.com
+
 Telegram group of this project: t.me/kivyiran
