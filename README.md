@@ -50,6 +50,11 @@ Custom made
 
     from kivyir import IrLabel, IrTextInput     # Line 3 should always be placed
 
+Sample image tested
+-------------------
+
+![](https://github.com/goldaaa/kivyir/blob/main/test/sampel_test.png)
+
 
 If you are interested in financial support, you can send a message through Gmail if you have any questions.
 
