@@ -13,6 +13,10 @@ I have added a sample test file so you can understand how to use it.
 Download
 --------
 
+Installation through pypi.
+
+    pip install kivyir --user
+
 You can also install from this repository.
 
     git clone https://github.com/goldaaa/kivyir.git
