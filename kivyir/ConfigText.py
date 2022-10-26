@@ -2,18 +2,81 @@ import re
 from copy import copy
 
 from kivy.core import text
-from kivy.core.text import Label
+from kivy.core.text import Label, DEFAULT_FONT
 from kivy.parser import parse_color
 from kivy.properties import dpi2px
 from kivy.core.text.markup import MarkupLabel
 from kivy.core.text.text_layout import LayoutWord, layout_text
 
-from .FaCleaning.Cleaning import cleaning
-from .FaCleaning.LanguageCheck import reverse_parse, find_text
+from facleaning.Cleaning import cleaning
+from facleaning.LanguageCheck import reverse_parse, find_text
+from pathlib import Path
+BASE_FONT = Path(__file__).resolve().parent / 'font'
+
+
+def __init__(
+        self, text='', font_size=12, font_name=DEFAULT_FONT, bold=False,
+        italic=False, underline=False, strikethrough=False, font_family=None,
+        halign='left', valign='bottom', shorten=False,
+        text_size=None, mipmap=False, color=None, line_height=1.0, strip=False,
+        strip_reflow=True, shorten_from='center', split_str=' ',
+        unicode_errors='replace',
+        font_hinting='normal', font_kerning=True, font_blended=True,
+        outline_width=None, outline_color=None, font_context=None,
+        font_features=None, base_direction=None, text_language=None,
+        **kwargs):
+    # Include system fonts_dir in resource paths.
+    # This allows us to specify a font from those dirs.
+    self.get_system_fonts_dir()
+
+    options = {'text': text, 'font_size': font_size,
+               'font_name': font_name, 'bold': bold, 'italic': italic,
+               'underline': underline, 'strikethrough': strikethrough,
+               'font_family': font_family,
+               'halign': halign, 'valign': valign, 'shorten': shorten,
+               'mipmap': mipmap, 'line_height': line_height,
+               'strip': strip, 'strip_reflow': strip_reflow,
+               'shorten_from': shorten_from, 'split_str': split_str,
+               'unicode_errors': unicode_errors,
+               'font_hinting': font_hinting,
+               'font_kerning': font_kerning,
+               'font_blended': font_blended,
+               'outline_width': outline_width,
+               'font_context': font_context,
+               'font_features': font_features,
+               'base_direction': base_direction,
+               'text_language': text_language}
+
+    kwargs_get = kwargs.get
+    options['color'] = color or (1, 1, 1, 1)
+    options['outline_color'] = outline_color or (0, 0, 0, 1)
+    options['padding'] = kwargs_get('padding', (0, 0))
+    if not isinstance(options['padding'], (list, tuple)):
+        options['padding'] = (options['padding'], options['padding'])
+    options['padding_x'] = kwargs_get('padding_x', options['padding'][0]) + 10
+    options['padding_y'] = kwargs_get('padding_y', options['padding'][1])
+
+    if 'size' in kwargs:
+        options['text_size'] = kwargs['size']
+    else:
+        if text_size is None:
+            options['text_size'] = (None, None)
+        else:
+            options['text_size'] = text_size
+
+    self._text_size = options['text_size']
+    self._text = options['text']
+    self._internal_size = 0, 0  # the real computed text size (inclds pad)
+    self._cached_lines = []
+
+    self.options = options
+    self.texture = None
+    self.is_shortened = False
+    self.resolve_font_name()
 
 
 def reverse_lang_other(text):
-    return reverse_parse(text=text, search=lambda word: find_text(word, "[A-Z a-z 1-9 ۱-۹]")[0], reverse_text=True)
+    return reverse_parse(text=text, search=lambda word: find_text(word, "[A-Z a-z 1-9 ۱-۹]"), reverse_text=True)
 
 
 def label_base_render(self, real=False):
@@ -157,10 +220,6 @@ def label_base_render_lines(self, lines, options, render_text, y, size):
 
 
 def markup__pre_render(self):
-    # self.resolve_font_name()
-    # split markup, words, and lines
-    # result: list of word with position and width/height
-    # during the first pass, we don't care about h/valign
     self._cached_lines = lines = []
     self._refs = {}
     self._anchors = {}
@@ -174,9 +233,7 @@ def markup__pre_render(self):
     options['_anchor'] = None
     options['script'] = 'normal'
     shorten = options['shorten']
-    # if shorten, then don't split lines to fit uw, because it will be
-    # flattened later when shortening and broken up lines if broken
-    # mid-word will have space mid-word when lines are joined
+
     uw_temp = None if shorten else uw
     xpad = options['padding_x']
     uhh = (None if uh is not None and options['valign'] != 'top' or
@@ -329,8 +386,7 @@ def markup__pre_render(self):
         options['_anchor'] = None
         w, h, lines = self.shorten_post(lines, w, h)
         self._cached_lines = lines
-    # when valign is not top, for markup we layout everything (text_size[1]
-    # is temporarily set to None) and after layout cut to size if too tall
+
     elif uh != uhh and h > uh and len(lines) > 1:
         if options['valign'] == 'bottom':
             i = 0
@@ -533,8 +589,9 @@ def markup_render_lines(self, lines, options, render_text, y, size):
 base_direction = 'rtl'
 font_name = 'Sahel'
 file_regular, file_bold, file_italic, file_bolditalic = \
-    'kivyir/font/Sahel.ttf', 'kivyir/font/Sahel-Bold.ttf', None, None
+    f"{BASE_FONT / 'Sahel.ttf'}", f"{BASE_FONT / 'Sahel-Bold.ttf'}", None, None
 
+text.LabelBase.__init__ = __init__
 text.LabelBase.find_base_direction = lambda *x: base_direction
 text.LabelBase.render = label_base_render
 text.LabelBase.render_lines = label_base_render_lines
