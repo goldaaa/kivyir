@@ -51,7 +51,7 @@ Custom made
 
     from kivyir import IrLabel, IrTextInput     # Line 3 should always be placed
 
-[Sample image tested](https://github.com/goldaaa/kivyir)
+[Sample image tested](https://github.com/goldaaa/kivyir/blob/main/test/sampel_test.png)
 
 ![](https://github.com/goldaaa/kivyir/blob/main/test/sampel_test.png)
 
