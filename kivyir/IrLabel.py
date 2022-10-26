@@ -7,7 +7,6 @@ class IrLabel(Label):
         super().__init__(**kwargs)
         self.text_size = self.size
         self.text_language = 'fa'
-        self.padding_x = 10
         self.valign = 'top'
         self.halign = 'right'
         self.line_height = 0.8
