@@ -1,4 +1,5 @@
-# kivyir >>> kivy persian | kivy فارسی
+# kivyir | kivy persian | kivy فارسی
+
 The first kivy Persian users for Iranians.
 
 I converted the kivy library into Farsi for Iranians so that Iranians can use it.
@@ -12,10 +13,6 @@ I have added a sample test file so you can understand how to use it.
 
 Download
 --------
-
-Installation through pypi.
-
-    pip install kivyir --user
 
 You can also install from this repository.
 
@@ -54,8 +51,7 @@ Custom made
 
     from kivyir import IrLabel, IrTextInput     # Line 3 should always be placed
 
-Sample image tested
--------------------
+[Sample image tested](https://github.com/goldaaa/kivyir)
 
 ![](https://github.com/goldaaa/kivyir/blob/main/test/sampel_test.png)
 
@@ -67,3 +63,5 @@ If you are interested in financial support, you can send a message through Gmail
 gmail: goldaaa.program@gmail.com
 
 [Telegram group of this project: t.me/kivyiran](http://t.me/kivyiran)
+
+[github facleaning](https://github.com/goldaaa/kivyir)
