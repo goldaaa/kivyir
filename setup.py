@@ -46,5 +46,5 @@ setup(
         "Programming Language :: Python :: 3.10",
         'Topic :: Software Development :: User Interfaces',
         "Topic :: Software Development :: Libraries :: Python Modules",
-    ],  # https://test.pypi.org/pypi?%3Aaction=list_classifiers
+    ],
 )
