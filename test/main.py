@@ -1,14 +1,12 @@
-from kivyir import *           # باید همیشه خط اول قرار بگیرد
-from kivyir import IrLabel, IrTextInput
+from kivyir import *
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.factory import Factory
-from kivy.uix.boxlayout import BoxLayout
 
-Builder.load_string("""
-<Home>:
+
+kv = Builder.load_string("""
+BoxLayout:
     orientation: 'vertical'
-    
+
     IrLabel:
         text: 'این یک متن برای تست می باشد, این دو متن برای تست می باشد, این سه متن برای تست می باشد.'
         height: 200
@@ -16,25 +14,20 @@ Builder.load_string("""
         halign: 'right'
 
     IrTextInput:
-        font_size: 20
-        size_hint_y: None
-        height: 200
         base_direction: 'rtl'
         text: 'این یک متن برای تست می باشد, این دو متن برای تست می باشد, این سه متن برای تست می باشد.'
 
         use_handles: True
-        foreground_color: (0,0,1,1)
+        cursor_color: (1, 0, 0, 1)
+        cursor_width: '2sp'
+        foreground_color: (0, 0, 0, 1)
+        background_color: (1, 1, 1, 1)
 """)
-
-
-class Home(BoxLayout):
-    pass
 
 
 class MyLabelApp(App):
     def build(self):
-        self.root = Factory.Home()
-        return super().build()
+        return kv
 
 
 label = MyLabelApp()
