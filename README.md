@@ -13,11 +13,10 @@ I have added a sample test file so you can understand how to use it.
 
 Download
 --------
-
 You can install this from pypi.
 
     pip install kivyir
-
+    
 You can also install from this repository.
 
     git clone https://github.com/goldaaa/kivyir.git
@@ -42,22 +41,31 @@ Commands that can be used
     
 Some changes if needed
 
-    from kivyir import ConfigText       # Line 2 should always be placed
-    
-    ConfigText.base_direction = 'ltr' or 'rtl'
-    ConfigText.font_name = 'font_name'
-    ConfigText.file_regular = '{path}/file_regular.ttf'
-    ConfigText.file_bold = '{path}/file_bold.ttf'
-    ConfigText.file_italic = '{path}/file_italic.ttf'
-    ConfigText.file_bolditalic = '{path}/file_bolditalic.ttf'
+    from kivyir import *
+    config = Config()
+    config.change(
+        direction='ltr',
+        font_name='Sahel',
+        file_regular='{path}.ttf',
+        file_bold='{path}.ttf',
+        file_italic='{path}.ttf',
+        file_bolditalic='{path}.ttf'
+    )
 
 Custom made
 
-    from kivyir import IrLabel, IrTextInput     # Line 3 should always be placed
+    from kivyir import IrLabel, IrTextInput
 
 [Sample image tested](https://github.com/goldaaa/kivyir/blob/main/test/sampel_test.png)
 
 ![](https://github.com/goldaaa/kivyir/blob/main/test/sampel_test.png)
+
+
+Install the required package
+--------
+    kivy>=2.0.0
+    facleaning
+
 
 
 If you are interested in financial support, you can send a message through Gmail if you have any questions.
