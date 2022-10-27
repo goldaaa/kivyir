@@ -1,4 +1,4 @@
-from .ConfigText import *
+from .ConfigBase import *
 from kivy.uix.label import Label
 
 
@@ -14,15 +14,3 @@ class IrLabel(Label):
     def on_size(self, *args):
         self.text_size = self.size
         self.texture_update()
-
-
-
-
-
-
-
-
-
-
-
-
