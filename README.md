@@ -74,6 +74,4 @@ If you are interested in financial support, you can send a message through Gmail
 
 gmail: goldaaa.program@gmail.com
 
-[Telegram group of this project: t.me/kivyiran](http://t.me/kivyiran)
-
 [github facleaning](https://github.com/goldaaa/kivyir)
