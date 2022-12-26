@@ -1,4 +1,4 @@
-# kivyir | kivy persian | kivy فارسی
+# kivy persian
 
 The first kivy Persian users for Iranians.
 
@@ -63,7 +63,7 @@ Custom made
 
 Install the required package
 --------
-    kivy>=2.0.0
+    kivy
     facleaning
 
 
@@ -74,4 +74,6 @@ If you are interested in financial support, you can send a message through Gmail
 
 gmail: goldaaa.program@gmail.com
 
-[github facleaning](https://github.com/goldaaa/kivyir)
+[github kivy persian](https://github.com/goldaaa/kivyir)
+
+If you Arab speaking friends need to use it, let me know so that I can apply it for you too.
