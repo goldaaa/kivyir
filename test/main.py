@@ -1,4 +1,14 @@
 from kivyir import *
+config = Config()
+config.change(
+    direction='rtl',
+    # font_name='Sahel',
+    # file_regular='{path}.ttf',
+    # file_bold='{path}.ttf',
+    # file_italic='{path}.ttf',
+    # file_bolditalic='{path}.ttf'
+)
+
 from kivy.app import App
 from kivy.lang import Builder
 
@@ -10,13 +20,12 @@ BoxLayout:
     IrLabel:
         text: 'این یک متن برای تست می باشد, این دو متن برای تست می باشد, این سه متن برای تست می باشد.'
         height: 200
-        valign: 'center'
         halign: 'right'
-
+        
     IrTextInput:
-        base_direction: 'rtl'
+        # base_direction: 'rtl'
         text: 'این یک متن برای تست می باشد, این دو متن برای تست می باشد, این سه متن برای تست می باشد.'
-
+        halign: 'right'
         use_handles: True
         cursor_color: (1, 0, 0, 1)
         cursor_width: '2sp'
