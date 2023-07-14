@@ -28,8 +28,10 @@ class ConfigText:
             unicode_errors='replace',
             font_hinting='normal', font_kerning=True, font_blended=True,
             outline_width=None, outline_color=None, font_context=None,
-            font_features=None, base_direction=None, text_language=None,
+            font_features=None, base_direction=None, font_direction='ltr',
+            font_script_name='Latin', text_language=None,
             **kwargs):
+
         # Include system fonts_dir in resource paths.
         # This allows us to specify a font from those dirs.
         self.get_system_fonts_dir()
@@ -50,12 +52,29 @@ class ConfigText:
                    'font_context': font_context,
                    'font_features': font_features,
                    'base_direction': base_direction,
+                   'font_direction': font_direction,
+                   'font_script_name': font_script_name,
                    'text_language': text_language}
 
         kwargs_get = kwargs.get
         options['color'] = color or (1, 1, 1, 1)
         options['outline_color'] = outline_color or (0, 0, 0, 1)
-        options['padding'] = kwargs_get('padding', (0, 0))
+
+        options['padding'] = kwargs_get('padding', [0, 0, 0, 0])
+        if isinstance(options['padding'], (int, float)):
+            options['padding'] = [options['padding']] * 4
+        elif (isinstance(options['padding'], (list, tuple)) and len(options['padding']) != 4):
+            if len(options['padding']) == 1:
+                options['padding'] = options['padding'] * 4
+            elif len(options['padding']) == 2:
+                options['padding'] = options['padding'] * 2
+            else:
+                raise ValueError(
+                    "padding should be int|float or a list|tuple with 1, 2 or "
+                    f"4 elements, got {type(options['padding'])} with "
+                    f"{len(options['padding'])} elements."
+                )
+
         if not isinstance(options['padding'], (list, tuple)):
             options['padding'] = (options['padding'], options['padding'])
         options['padding_x'] = kwargs_get('padding_x', options['padding'][0]) + 10
@@ -78,6 +97,7 @@ class ConfigText:
         self.texture = None
         self.is_shortened = False
         self.resolve_font_name()
+        self._migrate_deprecated_padding_xy()
 
     def render(self, real=False):
         '''Return a tuple (width, height) to create the image
@@ -614,7 +634,3 @@ class Config:
 
 
 Config().change()
-
-
-
-
