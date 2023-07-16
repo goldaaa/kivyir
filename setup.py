@@ -12,7 +12,7 @@ setup(
     description="Improving the display of Persian text for Persian speakers",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version='0.1.3',
+    version='0.1.4',
     platforms="ALL",
     license="MIT",
     packages=['kivyir', 'test'],
