@@ -374,9 +374,7 @@ class ConfigMarkup:
                     '&br;', ']').replace('&amp;', '&')
                 if len(item) > 1:
                     item = cleaning(item)
-                    if self.options['font_name'] == 'Roboto':
-                        options['font_name'] = font_name
-                        self.resolve_font_name()
+                    self.resolve_font_name()
                 if not base_dir:
                     base_dir = self._resolved_base_dir = find_base_dir(item)
                 opts = copy(options)
